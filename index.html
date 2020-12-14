@@ -42,11 +42,13 @@
 
 
     <script>
+        console.log(typeof document.getElementById("updatePin").value);
 
         /*
 
         PSUEDO CODE
         If the user presses loginPinBtn
+            isBlank()
             check the user input against localStorage
             if the login is invalid
                 display error message
@@ -55,8 +57,12 @@
                 show the withdrawal deposit div
                 get info from localstorage
                     balance
+                display balance
+
+
         
         If the user presses createPinBtn
+            isBlank()
             check the user input against localStorage
             if PIN already exists
                 display error message
@@ -65,6 +71,42 @@
                 Set balance to 0
                 hide the login div
                 show the withdrawal deposit div
+                show balance
+
+        If the user presses the withdrawal button
+            get the value from the textbox
+            isBlank()
+            get their balance from localStorage
+            if value is > balance
+                display error message
+            otherwise it's valid so withdrawal
+                balance - value
+                display balance
+                store new balance in localStorage
+
+        If the user presses the deposit button
+            get the value from the textbox
+            isBlank()
+            get their balance from localStorage
+            if value is <= 0
+                display error message
+            otherwise it's valid so deposit
+                balance + value
+                display balance
+                store new balance in localStorage
+
+        If the user presses the update PIN button
+            if the value is a blank string - isBlank()
+                display error
+            otherwise
+                check value against localstorage
+                if value exists
+                    display error
+                otherwise
+                    update PIN in localStorage
+
+        
+
 
         
 
