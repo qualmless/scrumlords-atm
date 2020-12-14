@@ -16,33 +16,76 @@
     <div id="login">
         <div>
             <label for="loginPin">Enter existing PIN</label>
-            <input type="password" id="loginPin"><button id="loginPinBtn">Submit</button>
+            <input type="password" id="loginPin"><button onclick="loginPin()" id="loginPinBtn">Submit</button>
         </div>
         <div>
             <label for="createPin">Enter PIN to Create New Account</label>
-            <input type="password" id="createPin"><button id="createPinBtn">Submit</button>
+            <input type="password" id="createPin"><button onclick="createPin()"id="createPinBtn">Submit</button>
         </div>
     </div>
 
     <div id="withdrawalDeposit" style="display:block">
         <div>
             <label for="withdrawalInput">Enter withdrawal amount</label>
-            <input type="text" id="withdrawalInput"><button id="withdrawalBtn">Submit</button>
+            <input type="text" id="withdrawalInput"><button onclick="withdrawal()" id="withdrawalBtn">Submit</button>
         </div>
         <div>
             <label for="depositInput">Enter deposit amount</label>
-            <input type="text" id="depositInput"><button id="depositBtn">Submit</button>
+            <input type="text" id="depositInput"><button onclick="deposit()" id="depositBtn">Submit</button>
         </div>
         <div>
             <label for="updatePin">Update PIN</label>
-            <input type="text" id="updatePin"><button id="updatePinBtn">Submit</button>
+            <input type="text" id="updatePin"><button onclick="updatePin()" id="updatePinBtn">Submit</button>
         </div>
     </div>
 
 
 
     <script>
-        console.log(typeof document.getElementById("updatePin").value);
+
+let pins = ["1001", "2002"];
+let balances = ["102","101"];
+
+        let accounts = [ 
+            {
+                pin: "1001",
+                balance: "301"
+            },
+            {
+                pin: "10021",
+                balance: "3041"
+            }
+        ]
+
+        console.log(accounts)
+
+
+
+        localStorage.setItem("pin", "0103");
+
+        function loginPin() {
+
+        }
+
+        function createPin() {
+            
+        }
+
+        function withdrawal() {
+            
+        }
+
+        function deposit() {
+            
+        }
+
+        function updatePin() {
+            
+        }
+
+        function isBlank(bal) {
+
+        }
 
         /*
 
