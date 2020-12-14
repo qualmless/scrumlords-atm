@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ATM Machine</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 
 <body>
     <h1>ATM Machine</h1>
     <p id="displayAlerts"></p>
+    <p id="displayBalance"></p>
     <div id="login">
         <div>
             <label for="loginPin">Enter existing PIN</label>
@@ -21,7 +24,7 @@
         </div>
     </div>
 
-    <div id="withdrawalDeposit" style="display:none">
+    <div id="withdrawalDeposit" style="display:block">
         <div>
             <label for="withdrawalInput">Enter withdrawal amount</label>
             <input type="text" id="withdrawalInput"><button id="withdrawalBtn">Submit</button>
@@ -39,8 +42,39 @@
 
 
     <script>
-        
+
         /*
+
+        PSUEDO CODE
+        If the user presses loginPinBtn
+            check the user input against localStorage
+            if the login is invalid
+                display error message
+            otherwise it's valid
+                hide the login div
+                show the withdrawal deposit div
+                get info from localstorage
+                    balance
+        
+        If the user presses createPinBtn
+            check the user input against localStorage
+            if PIN already exists
+                display error message
+            Otherwise PIN is available
+                Store pin in localStorage
+                Set balance to 0
+                hide the login div
+                show the withdrawal deposit div
+
+        
+
+
+
+
+
+
+
+
         
         Login with PIN
         Create account with PIN (check if
