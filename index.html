@@ -64,7 +64,24 @@
         }
 
         function createPin() {
-            
+            let createPin = document.getElementById("createPin").value;
+            if (createPin == localStorage.getItem("pin")) {
+                document.getElementById("displayAlerts").innerHTML = "PIN already exists";
+            }
+            else {
+                localStorage.setItem("pin",createPin);
+                localStorage.setItem("balance",0);
+                document.getElementById("login").style = "display:none";
+                document.getElementById("withdrawalDeposit").style = "display:block";
+                document.getElementById("displayBalance").innerHTML = "$" + localStorage.getItem("balance");
+                /*
+                Store pin in localStorage
+                Set balance to 0
+                hide the login div
+                show the withdrawal deposit div
+                show balance
+                */
+            }
         }
 
         function withdrawal() {
@@ -100,7 +117,7 @@
 
 
         
-        If the user presses createPinBtn
+---        If the user presses createPinBtn
             isBlank()
             check the user input against localStorage
             if PIN already exists
