@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div id="withdrawalDeposit" style="display:block">
+    <div id="withdrawalDeposit" style="display:none">
         <div>
             <label for="withdrawalInput">Enter withdrawal amount</label>
             <input type="text" id="withdrawalInput"><button onclick="withdrawal()" id="withdrawalBtn">Submit</button>
@@ -43,9 +43,23 @@
 
     <script>
 
+ 
 
 
         function loginPin() {
+            let loginPin = document.getElementById("loginPin").value;
+
+            if (loginPin == localStorage.getItem("pin")) {
+                // if the login valid 0103
+                document.getElementById("login").style = "display:none";
+                document.getElementById("withdrawalDeposit").style = "display:block";
+                document.getElementById("displayBalance").innerHTML = "$" + localStorage.getItem("balance");
+                
+            }
+            else {
+                document.getElementById("displayAlerts").innerHTML = "Account Not Found";
+            }
+            
 
         }
 
@@ -72,7 +86,7 @@
         /*
 
         PSUEDO CODE
-        If the user presses loginPinBtn
+---     If the user presses loginPinBtn
             isBlank()
             check the user input against localStorage
             if the login is invalid
