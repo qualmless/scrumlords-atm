@@ -74,18 +74,20 @@
                 document.getElementById("login").style = "display:none";
                 document.getElementById("withdrawalDeposit").style = "display:block";
                 document.getElementById("displayBalance").innerHTML = "$" + localStorage.getItem("balance");
-                /*
-                Store pin in localStorage
-                Set balance to 0
-                hide the login div
-                show the withdrawal deposit div
-                show balance
-                */
+
             }
         }
 
         function withdrawal() {
             
+            let withdrawalAmount = parseInt(document.getElementById("withdrawalInput").value);
+
+            let lsBalance = parseInt(localStorage.getItem("balance"));
+
+            if (withdrawalAmount > localStorage.getItem("balance")) {
+                document.getElementById("displayAlerts").innerHTML = "Back off Scrub";
+
+            }
         }
 
         function deposit() {
