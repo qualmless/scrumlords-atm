@@ -43,37 +43,48 @@
 
     <script>
 
+ 
 
 
         function loginPin() {
-            let loginPin=document.getElementById("loginPin").value;
-            if (loginPin==localStorage.getItem("pin")){
-                // valid id
-                document.getElementById("login").style="display:none";
-                document.getElementById("withdrawalDeposit").style="display:block";
-                document.getElementById("displayBalance").innerHTML="$"+localStorage.getItem("balance");
-            }   
-            else{
-                document.getElementById("displayAlerts").innerHTML="Account not found!"
+            let loginPin = parseInt(document.getElementById("loginPin").value);
+            if (loginPin.length === undefined) {
+                document.getElementById("displayAlerts").innerHTML = "Can't be blank";
+                setTimeout(clearErr, 3000);
             }
+
+            else if (loginPin == localStorage.getItem("pin")) {
+                document.getElementById("login").style = "display:none";
+                document.getElementById("withdrawalDeposit").style = "display:block";
+                document.getElementById("displayBalance").innerHTML = "$" + localStorage.getItem("balance");
+                
+            }
+            else {
+                document.getElementById("displayAlerts").innerHTML = "Account Not Found";
+                setTimeout(clearErr, 3000);
+
+            }
+            
+
         }
 
 
 
 
         function createPin() {
-            let createPin=document.getElementById("createPin").value;
-            if (createPin==localStorage.getItem("pin")){
-                document.getElementById("displayAlerts").innerHTML="PIN already exists!"
+            let createPin = document.getElementById("createPin").value;
+            if (createPin == localStorage.getItem("pin")) {
+                document.getElementById("displayAlerts").innerHTML = "PIN already exists";
+                setTimeout(clearErr, 3000);
             }
             else {
                 localStorage.setItem("pin",createPin);
                 localStorage.setItem("balance",0);
-                document.getElementById("login").style="display:none";
-                document.getElementById("withdrawalDeposit").style="display:block";
-                document.getElementById("displayBalance").innerHTML="$"+localStorage.getItem("balance");
+                document.getElementById("login").style = "display:none";
+                document.getElementById("withdrawalDeposit").style = "display:block";
+                document.getElementById("displayBalance").innerHTML = "$" + localStorage.getItem("balance");
+
             }
-            
         }
 
 
@@ -82,6 +93,7 @@
             let lsBalance = parseInt(localStorage.getItem("balance"));
             if (withdrawalAmount>lsBalance){
                 document.getElementById("displayAlerts").innerHTML="Stop being poor";
+                setTimeout(clearErr, 3000);
             }
             else {
                 lsBalance-=withdrawalAmount;
@@ -93,8 +105,9 @@
         function deposit() {
             let depositAmount = parseInt(document.getElementById("depositInput").value);
             let lsBalance = parseInt(localStorage.getItem("balance"));
-            if (depositAmount<=0){
+            if (depositAmount<0){
                 document.getElementById("displayAlerts").innerHTML="Can't deposit 0 or less";
+                setTimeout(clearErr, 3000);
             }
             else {
                 lsBalance+=depositAmount;
@@ -111,10 +124,14 @@
 
         }
 
+        function clearErr() {
+            document.getElementById("displayAlerts").innerHTML = "";
+        }
+
         /*
 
         PSUEDO CODE
-        If the user presses loginPinBtn
+---     If the user presses loginPinBtn
             isBlank()
             check the user input against localStorage
             if the login is invalid
@@ -138,7 +155,7 @@
                 show the withdrawal deposit div
                 show balance
         
-        If the user presses createPinBtn
+---        If the user presses createPinBtn
             isBlank()
             check the user input against localStorage
             if PIN already exists
@@ -150,7 +167,7 @@
                 show the withdrawal deposit div
                 show balance
 
-        If the user presses the withdrawal button
+---        If the user presses the withdrawal button
             get the value from the textbox
             isBlank()
             get their balance from localStorage
