@@ -48,8 +48,8 @@
 
         function loginPin() {
             let loginPin = parseInt(document.getElementById("loginPin").value);
-            if (loginPin.length === undefined) {
-                document.getElementById("displayAlerts").innerHTML = "Can't be blank";
+            if (isNaN(loginPin)) {
+                document.getElementById("displayAlerts").innerHTML = "Value must be numbers only";
                 setTimeout(clearErr, 3000);
             }
 
@@ -106,7 +106,6 @@
         function deposit() {
             let depositAmount = parseInt(document.getElementById("depositInput").value);
 
-            console.log("deposit"+ depositAmount);
 
             let lsBalance = parseInt(localStorage.getItem("balance"));
 
