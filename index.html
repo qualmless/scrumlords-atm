@@ -48,8 +48,8 @@
 
         function loginPin() {
             let loginPin = parseInt(document.getElementById("loginPin").value);
-            if (loginPin.length === undefined) {
-                document.getElementById("displayAlerts").innerHTML = "Can't be blank";
+            if (isNaN(loginPin)) {
+                document.getElementById("displayAlerts").innerHTML = "Value must be numbers only";
                 setTimeout(clearErr, 3000);
             }
 
@@ -72,8 +72,14 @@
 
 
         function createPin() {
-            let createPin = document.getElementById("createPin").value;
-            if (createPin == localStorage.getItem("pin")) {
+            let createPin = parseInt(document.getElementById("createPin").value);
+
+            if (isNaN(createPin)) {
+                document.getElementById("displayAlerts").innerHTML = "Value must be numbers only";
+                setTimeout(clearErr, 3000);
+            }
+
+            else if (createPin == localStorage.getItem("pin")) {
                 document.getElementById("displayAlerts").innerHTML = "PIN already exists";
                 setTimeout(clearErr, 3000);
             }
@@ -89,31 +95,49 @@
 
 
         function withdrawal() {
+            
             let withdrawalAmount = parseInt(document.getElementById("withdrawalInput").value);
+
+
+
             let lsBalance = parseInt(localStorage.getItem("balance"));
-            if (withdrawalAmount>lsBalance){
-                document.getElementById("displayAlerts").innerHTML="Stop being poor";
+
+            if (isNaN(withdrawalAmount)) {
+                document.getElementById("displayAlerts").innerHTML = "Value must be numbers only";
+                setTimeout(clearErr, 3000);
+            }
+            else if (withdrawalAmount > localStorage.getItem("balance")) {
+                document.getElementById("displayAlerts").innerHTML = "Stop being poor";
                 setTimeout(clearErr, 3000);
             }
             else {
-                lsBalance-=withdrawalAmount;
-                localStorage.setItem("balance",lsBalance);
-                document.getElementById("displayBalance").innerHTML="$"+localStorage.getItem("balance");
+                lsBalance -= withdrawalAmount;
+                localStorage.setItem("balance", lsBalance);
+                document.getElementById("displayBalance").innerHTML = "$" + localStorage.getItem("balance");
+
             }
         }
 
         function deposit() {
             let depositAmount = parseInt(document.getElementById("depositInput").value);
+
+
             let lsBalance = parseInt(localStorage.getItem("balance"));
-            if (depositAmount<0){
-                document.getElementById("displayAlerts").innerHTML="Can't deposit 0 or less";
+
+            if (isNaN(depositAmount)) {
+                document.getElementById("displayAlerts").innerHTML = "Value must be numbers only";
+                setTimeout(clearErr, 3000);
+            }
+            else if (depositAmount < 0) {
+                document.getElementById("displayAlerts").innerHTML = "Can't deposit a negative number";
                 setTimeout(clearErr, 3000);
             }
             else {
-                lsBalance+=depositAmount;
-                localStorage.setItem("balance",lsBalance);
-                document.getElementById("displayBalance").innerHTML="$"+localStorage.getItem("balance");            
-            }
+                lsBalance += depositAmount;
+                localStorage.setItem("balance", lsBalance);
+                document.getElementById("displayBalance").innerHTML = "$" + localStorage.getItem("balance");
+
+            }            
         }
 
         function updatePin() {
@@ -143,7 +167,9 @@
                     balance
                 display balance
 
-        If the user presses createPinBtn
+
+        
+---        If the user presses createPinBtn
             isBlank()
             check the user input against localStorage
             if PIN already exists
