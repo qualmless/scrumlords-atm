@@ -84,8 +84,14 @@
 
             let lsBalance = parseInt(localStorage.getItem("balance"));
 
+
             if (withdrawalAmount > localStorage.getItem("balance")) {
                 document.getElementById("displayAlerts").innerHTML = "Back off Scrub";
+            }
+            else {
+                lsBalance -= withdrawalAmount;
+                localStorage.setItem("balance", lsBalance);
+                document.getElementById("displayBalance").innerHTML = "$" + localStorage.getItem("balance");
 
             }
         }
