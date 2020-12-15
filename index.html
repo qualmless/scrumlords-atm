@@ -47,9 +47,13 @@
 
 
         function loginPin() {
-            let loginPin = document.getElementById("loginPin").value;
+            let loginPin = parseInt(document.getElementById("loginPin").value);
+            if (loginPin.length === undefined) {
+                document.getElementById("displayAlerts").innerHTML = "Can't be blank";
+                setTimeout(clearErr, 3000);
+            }
 
-            if (loginPin == localStorage.getItem("pin")) {
+            else if (loginPin == localStorage.getItem("pin")) {
                 document.getElementById("login").style = "display:none";
                 document.getElementById("withdrawalDeposit").style = "display:block";
                 document.getElementById("displayBalance").innerHTML = "$" + localStorage.getItem("balance");
@@ -101,6 +105,8 @@
 
         function deposit() {
             let depositAmount = parseInt(document.getElementById("depositInput").value);
+
+            console.log("deposit"+ depositAmount);
 
             let lsBalance = parseInt(localStorage.getItem("balance"));
 
